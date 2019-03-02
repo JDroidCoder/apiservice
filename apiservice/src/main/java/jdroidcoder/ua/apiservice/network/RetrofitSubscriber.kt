@@ -1,6 +1,7 @@
 package jdroidcoder.ua.apiservice.network
 
 import android.content.Context
+import com.google.gson.Gson
 import retrofit2.adapter.rxjava.HttpException
 import rx.Subscriber
 import rx.exceptions.OnErrorFailedException
@@ -18,19 +19,16 @@ abstract class RetrofitSubscriber<T> : Subscriber<T>() {
     override fun onError(e: Throwable) {
         when (e) {
             is HttpException -> {
-//                try {
-//                    if(e.code() == 401){
-//                        logout()
-//                        return
-//                    }
-//                    val body = e.response().errorBody()
-//                    val gson = Gson()
-//                    val adapter = gson.getAdapter(Base::class.java)
-//                    val errorParser = adapter.fromJson(body?.string())
-//                    apiException(ApiException(errorParser?.status, errorParser?.message))
-//                } catch (ex: Exception) {
-//
-//                }
+                try {
+
+                    val body = e.response().errorBody()
+                    val gson = Gson()
+                    val adapter = gson.getAdapter(Base::class.java)
+                    val errorParser = adapter.fromJson(body?.string())
+                    apiException(ApiException(errorParser?.status, errorParser?.message))
+                } catch (ex: Exception) {
+
+                }
             }
             is OnErrorFailedException -> e.printStackTrace()
             is SocketTimeoutException -> {
@@ -54,9 +52,9 @@ abstract class RetrofitSubscriber<T> : Subscriber<T>() {
 
     }
 
-    abstract fun noInternet()
+    open fun noInternet(){}
 
-    abstract fun retry()
+    open fun retry(){}
 
     open fun apiException(apiException: ApiException) {
 
