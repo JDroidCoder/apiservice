@@ -1,22 +1,18 @@
 package jdroidcoder.ua.apiservice.network
 
-import io.fabric.sdk.android.services.network.HttpRequest
-import okhttp3.Interceptor
+import jdroidcoder.ua.apiservice.util.GlobalData
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
 
 /**
  * Created by jdroidcoder on 16.02.2018.
  */
-object RetrofitConfig {
-    private const val BASE_URL = "https://dev.rideatom.com/api/v1/"
+internal object RetrofitConfig {
 
-    val adapter: ApiService
+    val adapter: ApiProvider?
         get() {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
@@ -26,13 +22,13 @@ object RetrofitConfig {
                     .build()
 
             val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(GlobalData.baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build()
 
-            return retrofit.create(ApiService::class.java)
+            return retrofit.create(GlobalData.apiServiceImpl!!::class.java)
         }
 
 //    private class AuthInterceptor : Interceptor {
