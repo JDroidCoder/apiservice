@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="jdroidcoder.ua.apiservice">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="0609b398541dc6e53e836c9cd95eb74886e29be9" />
+</manifest>
