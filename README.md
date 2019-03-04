@@ -1,14 +1,14 @@
 # apiservice
 
 This library based on Retrofit2, and has a purpose easy work with REST API.
-
-Opportunities :
 <ul>
+Opportunities :
 <li>Support RxJava/RxAndroid</li>
-2 - Easy treatment standard REST API errors
-3 - Easy work with OAuth Token
-4 - Easy work with SocketTimeoutException and lost internet connection
+<li>Easy treatment standard REST API errors</li>
+<li>Easy work with OAuth Token</li>
+<li>Easy work with SocketTimeoutException and lost internet connection</li>
 </ul>
+
 You can initialize library in App class or anywhere in app.
 
 Install:
