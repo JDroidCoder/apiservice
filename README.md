@@ -3,11 +3,12 @@
 This library based on Retrofit2, and has a purpose easy work with REST API.
 
 Opportunities :
-1 - Support RxJava/RxAndroid
+<ul>
+<li>Support RxJava/RxAndroid</li>
 2 - Easy treatment standard REST API errors
 3 - Easy work with OAuth Token
 4 - Easy work with SocketTimeoutException and lost internet connection
-
+</ul>
 You can initialize library in App class or anywhere in app.
 
 Install:
