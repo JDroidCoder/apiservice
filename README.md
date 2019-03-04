@@ -62,7 +62,7 @@ Init library and save in global object:
 GlobalData.apiService = ApiServiceInitializer.init("base url")?.create(Api::class.java)
 </code>
 Send request to server with RX and save token in headers for next requests:
-<code>
+<pre>
 GlobalData.apiService?.register("example@gmail.com","123456")
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -72,9 +72,9 @@ GlobalData.apiService?.register("example@gmail.com","123456")
                      ApiServiceInitializer.setToken("Authorization", response.token)
                 }
             })
-</code>
+</pre>
 Work with API exceptions:
-<code>
+<pre>
 Global.apiService?.register("example@gmail.com","123456")
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -88,9 +88,9 @@ Global.apiService?.register("example@gmail.com","123456")
                     Toast.makeText(context,"${apiException.status} ${apiException.message}")
                 }
             })
-</code>
+</pre>
 Work with SocketTimeoutException and lost internet:
-<code>
+<pre>
 Global.apiService?.register("example@gmail.com","123456")
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -113,5 +113,5 @@ Global.apiService?.register("example@gmail.com","123456")
                    //SocketTimeoutException
                 }
             })
-</code>
+</pre>
 If you have any question ask us here or write to email: jdroidcoder@gmail.com
