@@ -15,17 +15,21 @@ You can initialize library in App class or anywhere in app.
 Install:
 <ul>
 <li>Add jitpack repository in gradle(project level)</li>
-<code>allprojects {
+<code>
+	allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
-	}</code>
+	}
+</code>
 
-<li>Add dependency in gradle(app level)
+<li>Add dependency in gradle(app level)</li>
+<code>
 dependencies {
 	 implementation 'com.github.JDroidCoder:apiservice:Tag'
-}</li>
+}
+</code>
 
 <li> enjoy ;)</li>
 </ul>
