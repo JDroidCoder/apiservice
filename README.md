@@ -1,8 +1,9 @@
 # apiservice
 
 This library based on Retrofit2, and has a purpose easy work with REST API.
-<ul>
+
 Opportunities :
+<ul>
 <li>Support RxJava/RxAndroid</li>
 <li>Easy treatment standard REST API errors</li>
 <li>Easy work with OAuth Token</li>
@@ -12,21 +13,22 @@ Opportunities :
 You can initialize library in App class or anywhere in app.
 
 Install:
-1 - Add jitpack repository in gradle(project level)
+<ul>
+<li>Add jitpack repository in gradle(project level)
 allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
-	}
+	}</li>
 
-2 - Add dependency in gradle(app level)
+<li>Add dependency in gradle(app level)
 dependencies {
 	 implementation 'com.github.JDroidCoder:apiservice:Tag'
-}
+}</li>
 
-3 - enjoy ;)
-
+<li> enjoy ;)</li>
+</ul>
 Initialize library:
 ApiServiceInitializer.init("base url").create("you api interface) - will returned Api interface, you can save him in global variable.
 
