@@ -15,21 +15,21 @@ You can initialize library in App class or anywhere in app.
 Install:
 <ul>
 <li>Add jitpack repository in gradle(project level)</li>
-<code>
+<pre>
 	allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
-</code>
+</pre>
 
 <li>Add dependency in gradle(app level)</li>
-<code>
+<pre>
 dependencies {
 	implementation 'com.github.JDroidCoder:apiservice:1.0.2'
 }
-</code>
+</pre>
 
 <li> enjoy ;)</li>
 </ul>
@@ -39,28 +39,28 @@ ApiServiceInitializer.init("base url").create("you api interface) - will returne
 Code example:
 
 Response class:
-<code>
+<pre>
 data class Token(@SerializedName("access_token")var token: String?)
-</code>
+</pre>
 API interface 
-<code>
+<pre>
 interface Api{
     @POST("registration")
     @FormUrlEncoded
     fun register(@Field("email") email:String,
                  @Field("password") password:String):Observable<Token>
 }
-</code>
+</pre>
 Global object:
-<code>
+<pre>
 object GlobalData{
     var apiService:Api? = null
 }
-</code>
+</pre>
 Init library and save in global object:
-<code>
+<pre>
 GlobalData.apiService = ApiServiceInitializer.init("base url")?.create(Api::class.java)
-</code>
+</pre>
 Send request to server with RX and save token in headers for next requests:
 <pre>
 GlobalData.apiService?.register("example@gmail.com","123456")
