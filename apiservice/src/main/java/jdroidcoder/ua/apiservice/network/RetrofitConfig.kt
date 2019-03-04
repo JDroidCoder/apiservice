@@ -41,7 +41,7 @@ internal object RetrofitConfig {
             val original = chain.request()
             return if (!TextUtils.isEmpty(token)) {
                 val requestBuilder = original.newBuilder()
-                        .header("Authorization", token)
+                        .header(GlobalData.tokenLabel, token)
                         .method(original.method(), original.body())
 
                 chain.proceed(requestBuilder.build())

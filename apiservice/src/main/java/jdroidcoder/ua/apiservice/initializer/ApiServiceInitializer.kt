@@ -20,7 +20,8 @@ object ApiServiceInitializer {
         return RetrofitConfig.adapter
     }
 
-    private fun setToken(token:String){
+    fun setToken(headerTokenName: String, token: String) {
+        GlobalData.tokenLabel = headerTokenName
         GlobalData.token = token
     }
 }
