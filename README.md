@@ -1,6 +1,7 @@
 # apiservice
 
 This library based on Retrofit2, and has a purpose easy work with REST API.
+
 Opportunities :
 1 - Support RxJava/RxAndroid
 2 - Easy treatment standard REST API errors
