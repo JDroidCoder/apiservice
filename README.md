@@ -31,10 +31,12 @@ dependencies {
 }
 </pre>
 
-<li> enjoy ;)</li>
+<li>enjoy ;)</li>
 </ul>
 Initialize library:
-ApiServiceInitializer.init("base url").create("you api interface) - will returned Api interface, you can save him in global variable.
+<ul>
+<li>ApiServiceInitializer.init("base url").create("you api interface) - will returned Api interface, you can save him in global variable.</li>
+</ul>
 
 Code example:
 
