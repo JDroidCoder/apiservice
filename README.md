@@ -27,7 +27,7 @@ Install:
 <li>Add dependency in gradle(app level)</li>
 <code>
 dependencies {
-	 implementation 'com.github.JDroidCoder:apiservice:Tag'
+	implementation 'com.github.JDroidCoder:apiservice:1.0.2'
 }
 </code>
 
@@ -39,25 +39,30 @@ ApiServiceInitializer.init("base url").create("you api interface) - will returne
 Code example:
 
 Response class:
+<code>
 data class Token(@SerializedName("access_token")var token: String?)
-
+</code>
 API interface 
+<code>
 interface Api{
     @POST("registration")
     @FormUrlEncoded
     fun register(@Field("email") email:String,
                  @Field("password") password:String):Observable<Token>
 }
-
+</code>
 Global object:
+<code>
 object GlobalData{
     var apiService:Api? = null
 }
-
+</code>
 Init library and save in global object:
+<code>
 GlobalData.apiService = ApiServiceInitializer.init("base url")?.create(Api::class.java)
-
+</code>
 Send request to server with RX and save token in headers for next requests:
+<code>
 GlobalData.apiService?.register("example@gmail.com","123456")
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -67,8 +72,9 @@ GlobalData.apiService?.register("example@gmail.com","123456")
                      ApiServiceInitializer.setToken("Authorization", response.token)
                 }
             })
-
+</code>
 Work with API exceptions:
+<code>
 Global.apiService?.register("example@gmail.com","123456")
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -82,8 +88,9 @@ Global.apiService?.register("example@gmail.com","123456")
                     Toast.makeText(context,"${apiException.status} ${apiException.message}")
                 }
             })
-
+</code>
 Work with SocketTimeoutException and lost internet:
+<code>
 Global.apiService?.register("example@gmail.com","123456")
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -106,5 +113,5 @@ Global.apiService?.register("example@gmail.com","123456")
                    //SocketTimeoutException
                 }
             })
-
+</code>
 If you have any question ask us here or write to email: jdroidcoder@gmail.com
