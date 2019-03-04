@@ -14,13 +14,13 @@ You can initialize library in App class or anywhere in app.
 
 Install:
 <ul>
-<li>Add jitpack repository in gradle(project level)
+<li>Add jitpack repository in gradle(project level)</li>
 <code>allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
-	}</code></li>
+	}</code>
 
 <li>Add dependency in gradle(app level)
 dependencies {
