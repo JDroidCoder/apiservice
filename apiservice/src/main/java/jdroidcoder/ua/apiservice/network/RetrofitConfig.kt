@@ -10,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by jdroidcoder on 16.02.2018.
@@ -22,6 +23,9 @@ internal object RetrofitConfig {
             logging.level = HttpLoggingInterceptor.Level.BODY
             val client = OkHttpClient.Builder()
                     .addInterceptor(logging)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
                     .addInterceptor(AuthInterceptor())
                     .build()
 
