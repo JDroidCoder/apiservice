@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 object ApiServiceInitializer {
 
     @Throws(InitException::class)
-    fun init(baseUrl: String? = null): Retrofit? {
+    fun init(baseUrl: String? = null, isLogEnabled: Boolean = true): Retrofit? {
         if (baseUrl == null || baseUrl?.isNullOrEmpty() == true) {
             throw InitException("Url must be not null or empty")
         }
@@ -17,6 +17,7 @@ object ApiServiceInitializer {
             throw InitException("Invalid Url")
         }
         GlobalData.baseUrl = baseUrl
+        GlobalData.isLogEnabled = isLogEnabled
         return RetrofitConfig.adapter
     }
 

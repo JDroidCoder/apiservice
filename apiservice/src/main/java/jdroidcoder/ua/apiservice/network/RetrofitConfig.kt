@@ -19,20 +19,22 @@ internal object RetrofitConfig {
 
     val adapter: Retrofit?
         get() {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
+
             val client = OkHttpClient.Builder()
-                    .addInterceptor(logging)
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .addInterceptor(AuthInterceptor())
-                    .build()
+            if (GlobalData.isLogEnabled) {
+                val logging = HttpLoggingInterceptor()
+                logging.level = HttpLoggingInterceptor.Level.BODY
+                client.addInterceptor(logging)
+            }
 
             return Retrofit.Builder()
                     .baseUrl(GlobalData.baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
+                    .client(client.build())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build()
         }
