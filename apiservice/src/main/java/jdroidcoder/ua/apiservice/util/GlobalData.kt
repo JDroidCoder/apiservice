@@ -5,4 +5,5 @@ internal object GlobalData {
     var token: String = ""
     var tokenLabel: String = ""
     var isLogEnabled: Boolean = true
+    var timeout: Long = 30
 }

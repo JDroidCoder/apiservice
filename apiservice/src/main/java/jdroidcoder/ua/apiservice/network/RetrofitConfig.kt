@@ -21,9 +21,9 @@ internal object RetrofitConfig {
         get() {
 
             val client = OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(GlobalData.timeout, TimeUnit.SECONDS)
+                    .writeTimeout(GlobalData.timeout, TimeUnit.SECONDS)
+                    .readTimeout(GlobalData.timeout, TimeUnit.SECONDS)
                     .addInterceptor(AuthInterceptor())
             if (GlobalData.isLogEnabled) {
                 val logging = HttpLoggingInterceptor()

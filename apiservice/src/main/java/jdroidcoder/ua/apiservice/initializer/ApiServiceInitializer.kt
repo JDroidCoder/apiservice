@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 object ApiServiceInitializer {
 
     @Throws(InitException::class)
-    fun init(baseUrl: String? = null, isLogEnabled: Boolean = true): Retrofit? {
+    fun init(baseUrl: String? = null, isLogEnabled: Boolean = true, timeout: Long = 30): Retrofit? {
         if (baseUrl == null || baseUrl?.isNullOrEmpty() == true) {
             throw InitException("Url must be not null or empty")
         }
@@ -18,6 +18,7 @@ object ApiServiceInitializer {
         }
         GlobalData.baseUrl = baseUrl
         GlobalData.isLogEnabled = isLogEnabled
+        GlobalData.timeout = timeout
         return RetrofitConfig.adapter
     }
 
