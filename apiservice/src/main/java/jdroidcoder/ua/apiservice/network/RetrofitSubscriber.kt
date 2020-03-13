@@ -17,44 +17,56 @@ abstract class RetrofitSubscriber<T> : Subscriber<T>() {
     override fun onNext(result: T) {}
 
     override fun onError(e: Throwable) {
-        when (e) {
-            is HttpException -> {
-                try {
+        try {
+            when (e) {
+                is HttpException -> {
+                    try {
 
-                    val body = e.response().errorBody()
-                    val gson = Gson()
-                    val adapter = gson.getAdapter(Base::class.java)
-                    val errorParser = adapter.fromJson(body?.string())
-                    apiException(ApiException(errorParser?.status, errorParser?.message))
+                        val body = e.response().errorBody()
+                        val gson = Gson()
+                        val adapter = gson.getAdapter(Base::class.java)
+                        val errorParser = adapter.fromJson(body?.string())
+                        apiException(ApiException(errorParser?.status, errorParser?.message))
+                    } catch (ex: Exception) {
+
+                    }
+                }
+                is OnErrorFailedException -> try {
+                    e.printStackTrace()
                 } catch (ex: Exception) {
+                }
+                is SocketTimeoutException -> {
+                    try {
+                        retry()
+                    } catch (ex: Exception) {
+                    }
+                }
+                is UnknownHostException -> {
+                    try {
+                        noInternet()
+                    } catch (ex: Exception) {
 
+                    }
+                }
+                else -> {
+                    try {
+                        onCompleted()
+                    } catch (ex: Exception) {
+                    }
                 }
             }
-            is OnErrorFailedException -> e.printStackTrace()
-            is SocketTimeoutException -> {
-                retry()
-            }
-            is UnknownHostException -> {
-                try {
-                    noInternet()
-                } catch (ex: Exception) {
-                    ex.printStackTrace()
-                }
-            }
-            else -> {
-                onCompleted()
-                e.printStackTrace()
-            }
+        } catch (ex: Exception) {
+
         }
     }
 
-    open fun logout(){
+    open fun logout() {
 
     }
 
-    open fun noInternet(){}
+    open fun noInternet() {}
 
-    open fun retry(){}
+    open fun retry() {}
 
     open fun apiException(apiException: ApiException) {
 
